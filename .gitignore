@@ -1,41 +1,17 @@
-# Compiled Lua sources
-luac.out
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Players = game:GetService("Players")
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+local function setupPlayer(plr)
+    local hum = plr.Character and plr.Character:FindFirstChildOfClass("Humanoid")
+    if hum then
+        hum.WalkSpeed = 32 -- eksempel boost
+    end
+end
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+Players.PlayerAdded:Connect(function(plr)
+    plr.CharacterAdded:Connect(function()
+        setupPlayer(plr)
+    end)
+end)
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
+print("Jurassic Blocky Hub Loaded!")
